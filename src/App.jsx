@@ -1,5 +1,7 @@
 import {
   CheckCircle2,
+  ChevronDown,
+  ChevronUp,
   Clock3,
   Download,
   Facebook,
@@ -13,7 +15,9 @@ import {
   Share2,
   Sparkles,
 } from 'lucide-react';
+import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+
 
 const cardUrl = import.meta.env.VITE_CARD_URL || window.location.href;
 
@@ -224,6 +228,10 @@ function Hero() {
 }
 
 function MenuPreview() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const visibleItems = isMenuOpen ? menuItems : [];
+  const ToggleIcon = isMenuOpen ? ChevronUp : ChevronDown;
+
   return (
     <section className="section menu-preview" id="menu" aria-labelledby="menu-title">
       <div className="section-heading">
@@ -231,8 +239,8 @@ function MenuPreview() {
         <h2 id="menu-title">Favoritos de la casa</h2>
       </div>
 
-      <div className="menu-list">
-        {menuItems.map((item, index) => (
+      <div className={`menu-list ${isMenuOpen ? 'is-open' : ''}`} id="menu-list">
+        {visibleItems.map((item, index) => (
           <article className="menu-item" key={item}>
             <span className={index % 3 === 0 ? 'menu-icon fire' : 'menu-icon'}>
               {index % 3 === 0 ? (
@@ -245,6 +253,17 @@ function MenuPreview() {
           </article>
         ))}
       </div>
+
+      <button
+        aria-expanded={isMenuOpen}
+        aria-controls="menu-list"
+        className="menu-toggle"
+        type="button"
+        onClick={() => setIsMenuOpen((current) => !current)}
+      >
+        <span>{isMenuOpen ? 'Ocultar menú completo' : 'Ver menú completo'}</span>
+        <ToggleIcon aria-hidden="true" size={20} strokeWidth={2.5} />
+      </button>
     </section>
   );
 }
