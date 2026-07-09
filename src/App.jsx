@@ -1,4 +1,5 @@
 import {
+  Calculator,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
@@ -14,6 +15,7 @@ import {
   Send,
   Share2,
   Sparkles,
+  Users,
 } from 'lucide-react';
 import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
@@ -23,7 +25,7 @@ const cardUrl = import.meta.env.VITE_CARD_URL || window.location.href;
 
 const business = {
   name: 'TAQUERÍA EL AMIGO',
-  subtitle: 'Tacos, pastor, gringas y más',
+  subtitle: 'Tacos, Quesadillas y Charolas Surtidas',
   tagline: 'El sabor que se comparte entre amigos.',
   description:
     'Disfruta auténticos tacos estilo mexicano, preparados al momento con ingredientes frescos, buen sazón y el toque especial de la casa.',
@@ -38,7 +40,7 @@ const business = {
   tacos: '/assets/tacos.png',
   trompo: '/assets/trompo.png',
   whatsappUrl:
-    'https://wa.me/52462XXXXXXX?text=Hola,%20me%20gustar%C3%ADa%20hacer%20un%20pedido%20en%20Taquer%C3%ADa%20El%20Amigo',
+    'https://wa.me/524622601179?text=Hola,%20me%20gustar%C3%ADa%20hacer%20un%20pedido%20en%20Taquer%C3%ADa%20El%20Amigo',
   menuUrl: '/menu-taqueria.pdf',
   facebookUrl: 'https://facebook.com/taqueriaelamigo',
   mapsUrl:
@@ -47,13 +49,25 @@ const business = {
 
 const menuItems = [
   'Tacos al pastor',
-  'Tacos de asada',
-  'Gringas',
+  'Tacos de chorizo',
+  'Tacos de suadero',
+  'Tacos de bisctec',
+  'Tacos de tripa',
   'Quesadillas',
-  'Tortas',
-  'Volcanes',
-  'Salsas de la casa',
-  'Refrescos',
+  'Charolas surtidas',
+];
+
+const taquizaIncludes = [
+  'Tacos a llenar',
+  '3 carnes: bistec, chorizo y pastor',
+  'Quesadillas',
+  'Desechables',
+  '1 vitrolero de agua',
+  'Salsas, verdura y cebolla asada',
+];
+
+const extraMeats = ['Cabeza', 
+  'Tripa'
 ];
 
 const contactItems = [
@@ -88,18 +102,11 @@ const contactButtons = [
     ariaLabel: 'Llamar a Taquería El Amigo',
   },
   {
-    label: 'Ver menú',
+    label: 'Descargar menú completo',
     href: business.menuUrl,
     icon: Menu,
     tone: 'menu',
     ariaLabel: 'Ver menú de Taquería El Amigo',
-  },
-  {
-    label: 'Facebook',
-    href: business.facebookUrl,
-    icon: Facebook,
-    tone: 'light',
-    ariaLabel: 'Abrir Facebook de Taquería El Amigo',
   },
   {
     label: 'Ubicación en Google Maps',
@@ -109,13 +116,22 @@ const contactButtons = [
     ariaLabel: 'Abrir ubicación de Taquería El Amigo en Google Maps',
   },
   {
-    label: 'Compartir tarjeta digital',
-    href: cardUrl,
-    icon: Share2,
-    tone: 'share',
-    ariaLabel: 'Compartir tarjeta digital',
-    action: 'share',
+    label: 'Cotizar taquiza',
+    href: '#cotizar-taquiza',
+    icon: Calculator,
+    tone: 'quote',
+    ariaLabel: 'Cotizar una taquiza por WhatsApp',
+    action: 'quote',
   },
+  
+  // {
+  //   label: 'Compartir tarjeta digital',
+  //   href: cardUrl,
+  //   icon: Share2,
+  //   tone: 'share',
+  //   ariaLabel: 'Compartir tarjeta digital',
+  //   action: 'share',
+  // },
   {
     label: 'Guardar contacto',
     href: `data:text/vcard;charset=utf-8,${encodeURIComponent(vCard)}`,
@@ -269,11 +285,39 @@ function MenuPreview() {
 }
 
 function ContactButtons() {
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [guestCount, setGuestCount] = useState('');
+
+  function createQuoteMessage() {
+    return [
+      'Hola, me gustaría cotizar una taquisa en Taquería El Amigo.',
+      '',
+      `Personas que asistirán: ${guestCount}`,
+      '',
+      'Cotización incluye:',
+      ...taquizaIncludes.map((item) => `- ${item}`),
+      '',
+      'Carnes con costo extra:',
+      ...extraMeats.map((item) => `- ${item}`),
+    ].join('\n');
+  }
+
+  function sendQuote(event) {
+    event.preventDefault();
+
+    if (!guestCount) {
+      return;
+    }
+
+    const quoteUrl = `https://wa.me/524622601179?text=${encodeURIComponent(createQuoteMessage())}`;
+    window.open(quoteUrl, '_blank', 'noopener,noreferrer');
+  }
+
   return (
     <section className="section contact-section" aria-labelledby="contact-title">
       <div className="section-heading">
         <span>CONTACTO</span>
-        <h2 id="contact-title">Pedidos y redes</h2>
+        <h2 id="contact-title">Pedidos y cotizaciones</h2>
       </div>
 
       <div className="contact-buttons">
@@ -288,7 +332,16 @@ function ContactButtons() {
               download={button.download}
               href={button.href}
               key={button.label}
-              onClick={button.action === 'share' ? shareCard : undefined}
+              onClick={
+                button.action === 'share'
+                  ? shareCard
+                  : button.action === 'quote'
+                    ? (event) => {
+                        event.preventDefault();
+                        setIsQuoteOpen((current) => !current);
+                      }
+                    : undefined
+              }
               rel={isExternal ? 'noreferrer' : undefined}
               target={isExternal ? '_blank' : undefined}
             >
@@ -300,6 +353,53 @@ function ContactButtons() {
           );
         })}
       </div>
+
+      {isQuoteOpen && (
+        <form className="quote-form" id="cotizar-taquisa" onSubmit={sendQuote}>
+          <div className="quote-form-heading">
+            <span className="quote-icon">
+              <Users aria-hidden="true" size={20} />
+            </span>
+            <div>
+              <strong>Cotización de taquisa</strong>
+              <p>Indica cuántas personas asistirán y envía la solicitud por WhatsApp.</p>
+            </div>
+          </div>
+
+          <label className="guest-field">
+            <span>Personas que asistirán</span>
+            <input
+              inputMode="numeric"
+              min="1"
+              pattern="[0-9]*"
+              placeholder="Ej. 30"
+              required
+              type="number"
+              value={guestCount}
+              onChange={(event) => setGuestCount(event.target.value)}
+            />
+          </label>
+
+          <div className="quote-includes">
+            <strong>Incluye</strong>
+            <ul>
+              {taquizaIncludes.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="quote-extra">
+            <strong>Carnes con costo extra</strong>
+            <span>{extraMeats.join(' · ')}</span>
+          </div>
+
+          <button className="quote-submit" type="submit">
+            <Send aria-hidden="true" size={20} />
+            Enviar cotización por WhatsApp
+          </button>
+        </form>
+      )}
     </section>
   );
 }

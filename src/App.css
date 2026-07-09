@@ -537,6 +537,10 @@ h1 {
   background: var(--ochre);
 }
 
+.quote {
+  background: linear-gradient(135deg, var(--button-red), var(--ochre));
+}
+
 .share {
   color: var(--title);
   background: var(--mustard);
@@ -565,6 +569,159 @@ h1 {
 
 .save .button-icon {
   background: rgba(31, 125, 58, 0.12);
+}
+
+.quote-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid rgba(198, 66, 29, 0.14);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(229, 169, 59, 0.16), transparent 32%),
+    var(--white);
+  box-shadow: 0 14px 26px rgba(62, 26, 17, 0.08);
+  animation: menu-item-in 220ms ease both;
+}
+
+.quote-form-heading {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 11px;
+  align-items: center;
+}
+
+.quote-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--button-red);
+  background: rgba(198, 66, 29, 0.1);
+}
+
+.quote-form-heading strong,
+.quote-includes strong,
+.quote-extra strong {
+  display: block;
+  color: var(--title);
+  font-size: 0.98rem;
+}
+
+.quote-form-heading p {
+  margin: 4px 0 0;
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.guest-field {
+  display: grid;
+  gap: 7px;
+}
+
+.guest-field span {
+  color: rgba(99, 67, 43, 0.78);
+  font-size: 0.74rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.guest-field input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 15px;
+  border: 1px solid rgba(99, 67, 43, 0.16);
+  border-radius: 18px;
+  color: var(--title);
+  background: #fffaf0;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 850;
+  outline: none;
+}
+
+.guest-field input:focus {
+  border-color: rgba(31, 125, 58, 0.45);
+  box-shadow: 0 0 0 4px rgba(31, 125, 58, 0.1);
+}
+
+.quote-includes,
+.quote-extra {
+  padding: 13px;
+  border-radius: 20px;
+  background: rgba(243, 239, 224, 0.62);
+}
+
+.quote-includes ul {
+  display: grid;
+  gap: 7px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quote-includes li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 780;
+  line-height: 1.32;
+}
+
+.quote-includes li::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.quote-extra span {
+  display: block;
+  margin-top: 7px;
+  color: var(--pastor-dark);
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.quote-submit {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--green), var(--teal));
+  box-shadow: 0 14px 24px rgba(31, 125, 58, 0.2);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 950;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.quote-submit:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.05);
+  box-shadow: 0 17px 28px rgba(31, 125, 58, 0.25);
+}
+
+.quote-submit:focus-visible {
+  outline: 3px solid rgba(229, 169, 59, 0.56);
+  outline-offset: 3px;
 }
 
 .info-card,
