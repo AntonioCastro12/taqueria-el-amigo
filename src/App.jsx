@@ -29,8 +29,8 @@ const business = {
   tagline: 'El sabor que se comparte entre amigos.',
   description:
     'Disfruta auténticos tacos estilo mexicano, preparados al momento con ingredientes frescos, buen sazón y el toque especial de la casa.',
-  phone: '462 XXX XXXX',
-  phoneHref: 'tel:462XXXXXXX',
+  phone: '462 632 12 18',
+  phoneHref: 'tel:4626321218',
   location: 'Irapuato, Guanajuato',
   hours: 'Lunes a domingo de 5:00 p.m. a 12:00 a.m.',
   facebookName: 'Taquería El Amigo',
@@ -39,9 +39,9 @@ const business = {
   taquero: '/assets/taquero.jpeg',
   tacos: '/assets/tacos.jpeg',
   whatsappUrl:
-    'https://wa.me/524622601179?text=Hola,%20me%20gustar%C3%ADa%20hacer%20un%20pedido%20en%20Taquer%C3%ADa%20El%20Amigo',
+    'https://wa.me/524626321218?text=Hola,%20me%20gustar%C3%ADa%20hacer%20un%20pedido%20en%20Taquer%C3%ADa%20El%20Amigo',
   menuUrl: '/menu-taqueria.pdf',
-  facebookUrl: 'https://facebook.com/taqueriaelamigo',
+  // facebookUrl: 'https://facebook.com/taqueriaelamigo',
   mapsUrl:
     'https://www.google.com/maps/search/?api=1&query=Taqueria+El+Amigo+Irapuato+Guanajuato',
 };
@@ -71,7 +71,7 @@ const extraMeats = ['Cabeza',
 
 const contactItems = [
   { label: 'Tel', value: business.phone, icon: Phone },
-  { label: 'Facebook', value: business.facebookName, icon: Facebook },
+  // { label: 'Facebook', value: business.facebookName, icon: Facebook },
   { label: 'Ubicación', value: business.location, icon: MapPin },
   { label: 'Horario', value: business.hours, icon: Clock3 },
 ];
@@ -305,7 +305,7 @@ function ContactButtons() {
       return;
     }
 
-    const quoteUrl = `https://wa.me/524622601179?text=${encodeURIComponent(createQuoteMessage())}`;
+    const quoteUrl = `https://wa.me/524626321218?text=${encodeURIComponent(createQuoteMessage())}`;
     window.open(quoteUrl, '_blank', 'noopener,noreferrer');
   }
 
@@ -481,3 +481,25 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+/*        
+Entonces así quedaria 
+Tacos
+Bistec 15
+chorizo 15
+Pastor 15
+cabeza 15
+Suadero 18
+Tripa 18
+
+Quesadillas 
+Bistec 28
+Chorizo 28
+Suadero 28 
+Pastro 28 
+Tripa 28
+*/
