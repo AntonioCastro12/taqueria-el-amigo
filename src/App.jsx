@@ -34,11 +34,10 @@ const business = {
   location: 'Irapuato, Guanajuato',
   hours: 'Lunes a domingo de 5:00 p.m. a 12:00 a.m.',
   facebookName: 'Taquería El Amigo',
-  logo: '/assets/logo-taqueria.png',
-  introLogo: '/assets/intro-logo.png',
-  taquero: '/assets/taquero.png',
-  tacos: '/assets/tacos.png',
-  trompo: '/assets/trompo.png',
+  logo: '/assets/intro-logo.jpeg',
+  introLogo: '/assets/intro-logo.jpeg',
+  taquero: '/assets/taquero.jpeg',
+  tacos: '/assets/tacos.jpeg',
   whatsappUrl:
     'https://wa.me/524622601179?text=Hola,%20me%20gustar%C3%ADa%20hacer%20un%20pedido%20en%20Taquer%C3%ADa%20El%20Amigo',
   menuUrl: '/menu-taqueria.pdf',
@@ -187,9 +186,6 @@ function IntroScreen() {
         <img src={business.introLogo} alt="" />
         <strong>{business.name}</strong>
       </div>
-      <div className="intro-loader">
-        <span />
-      </div>
     </section>
   );
 }
@@ -213,9 +209,9 @@ function Hero() {
     <section className="hero" aria-label="Presentación de Taquería El Amigo">
       <div className="hero-image-card">
         <div className="hero-plate" aria-hidden="true">
+          <img className="hero-food hero-food-top hero-logo-badge" src={business.logo} alt="" />
+          <img className="hero-food hero-food-bottom" src={business.tacos} alt="" />
           <img className="hero-taquero" src={business.taquero} alt="" />
-          <img className="hero-trompo" src={business.trompo} alt="" />
-          <img className="hero-tacos" src={business.tacos} alt="" />
         </div>
         <span className="floating-favorite" aria-hidden="true">
           <Heart size={20} fill="currentColor" />
