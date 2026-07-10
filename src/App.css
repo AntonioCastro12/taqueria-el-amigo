@@ -296,8 +296,8 @@ p {
 
 .floating-favorite {
   position: absolute;
-  top: 20px;
-  right: 19px;
+  top: -20px;
+  right: 1px;
   z-index: 4;
   width: 46px;
   height: 46px;
@@ -985,28 +985,28 @@ h1 {
   }
 
   .hero-image-card {
-    min-height: 318px;
+    min-height: 380px;
   }
 
   .hero-taquero {
     right: -34px;
     bottom: 22px;
     width: 218px;
-    height: 218px;
+    height: 270px;
   }
 
   .hero-food-top {
     top: 43px;
-    left: 40px;
-    width: 108px;
-    height: 108px;
+    left: 20px;
+    width: 150px;
+    height: 150px;
   }
 
   .hero-food-bottom {
     left: 24px;
     bottom: 42px;
     width: 124px;
-    height: 106px;
+    height: 130px;
   }
 
   h1 {
