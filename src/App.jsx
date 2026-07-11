@@ -31,8 +31,8 @@ const business = {
     'Disfruta auténticos tacos estilo mexicano, preparados al momento con ingredientes frescos, buen sazón y el toque especial de la casa.',
   phone: '462 632 12 18',
   phoneHref: 'tel:4626321218',
-  location: 'Irapuato, Guanajuato',
-  hours: 'Lunes a domingo de 5:00 p.m. a 12:00 a.m.',
+  location: 'Calle Higuera 658, Irapuato, 36580, Gto, MX',
+  hours: 'Miérc. a Dom. de 6:30 p.m. a 11:00 p.m.',
   facebookName: 'Taquería El Amigo',
   logo: '/assets/intro-logo.jpeg',
   introLogo: '/assets/intro-logo.jpeg',
@@ -43,7 +43,7 @@ const business = {
   menuUrl: '/menu-taqueria.pdf',
   // facebookUrl: 'https://facebook.com/taqueriaelamigo',
   mapsUrl:
-    'https://www.google.com/maps/search/?api=1&query=Taqueria+El+Amigo+Irapuato+Guanajuato',
+    'https://maps.app.goo.gl/64FCVxSxH4jjfZ8JA',
 };
 
 const menuItems = [
